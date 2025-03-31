@@ -3,12 +3,12 @@ if [[ $EUID -ne 0 ]]; then
    echo "Этот скрипт должен быть запущен с правами root (sudo)"
    exit 1
 fi
-read -p "Введите имя нового пользователя: " username
+read -p "Введите имя нового пользователя:"username
 if id "$username" >/dev/null 2>&1; then
     echo "Пользователь $username уже существует!"
     exit 1
 fi
-read -s -p "Введите пароль для $username: " password
+read -s -p "Введите пароль для $username:"password
 echo
 read -s -p "Подтвердите пароль: " password_confirm
 echo
