@@ -66,7 +66,7 @@ bantime  = 3600
 FAIL2BAN_EOF"
 
 echo "Restarting services..."
-echo "$sudo_password" | sudo -S systemctl restart sshd || { echo "Error: Failed to restart sshd"; exit 1; }
+echo "$sudo_password" | sudo -S systemctl restart ssh || { echo "Error: Failed to restart sshd"; exit 1; }
 echo "$sudo_password" | sudo -S systemctl restart fail2ban || { echo "Error: Failed to restart fail2ban"; exit 1; }
 
 echo "$sudo_password" | sudo -S systemctl status sshd | grep "Active: active" || { echo "Error: sshd not running after restart"; exit 1; }
