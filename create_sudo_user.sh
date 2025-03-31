@@ -1,24 +1,27 @@
 #!/bin/bash
 
 # Check if script is run as root
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root (sudo)"
-   exit 1
+if [ "$EUID" -ne 0 ]; then
+    echo "This script must be run as root (sudo)"
+    exit 1
 fi
 
 # Prompt for new username
-read -p "Enter the new username: " username
+echo "Enter the new username: "
+read username
 
 # Check if user already exists
-if id "$username" >/dev/null 2>&1; then
+if id "$username" > /dev/null 2>&1; then
     echo "User $username already exists!"
     exit 1
 fi
 
 # Prompt for password
-read -s -p "Enter password for $username: " password
+echo "Enter password for $username: "
+read -s password
 echo
-read -s -p "Confirm password: " password_confirm
+echo "Confirm password: "
+read -s password_confirm
 echo
 
 # Check if passwords match
